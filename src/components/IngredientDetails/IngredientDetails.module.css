@@ -1,0 +1,48 @@
+.ingredientDetails
+{
+  /*  */
+}
+
+.img img
+{
+  display: block;
+
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.title
+{
+  text-align: center;
+
+  color: #f2f2f3;
+}
+
+.params
+{
+  display: flex;
+
+  justify-content: center;
+}
+
+.paramsItem
+{
+  min-width: 112px;
+
+  text-align: center;
+}
+
+.paramsTitle
+{
+  color: #8585AD;
+}
+
+.paramsText
+{
+  color: #8585AD;
+}
+
+.paramsItem:last-child
+{
+  margin-right: 0;
+}

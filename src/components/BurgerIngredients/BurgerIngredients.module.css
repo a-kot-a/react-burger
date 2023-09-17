@@ -1,0 +1,81 @@
+.topic
+{
+  color: #f2f2f3;
+}
+
+.tabs
+{
+  display: flex;
+}
+
+.scroll
+{
+  overflow-y: auto;
+
+  height: calc(100vh - 335px);
+}
+
+.scroll::-webkit-scrollbar
+{
+  width: 8px;
+
+  border-radius: 0;
+}
+
+.scroll::-webkit-scrollbar-track
+{
+  border-radius: 0;
+  background: #2f2f37;
+}
+
+.scroll::-webkit-scrollbar-thumb
+{
+  border-radius: 0;
+  background: #8585ad;
+}
+
+.group:first-child
+{
+  margin-top: 0;
+}
+
+.category
+{
+  color: #f2f2f3;
+}
+
+.list
+{
+  display: flex;
+
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card
+{
+  position: relative;
+
+  width: 272px;
+
+  cursor: pointer;
+}
+
+.price
+{
+  display: flex;
+
+  color: #f2f2f3;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.title
+{
+  min-height: 48px;
+
+  text-align: center;
+
+  color: #f2f2f3;
+}

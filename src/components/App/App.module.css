@@ -1,0 +1,16 @@
+.app
+{
+  /*  */
+}
+
+.body
+{
+  display: flex;
+
+  justify-content: center;
+}
+
+.item
+{
+  width: 600px;
+}

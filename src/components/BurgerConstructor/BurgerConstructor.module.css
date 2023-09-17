@@ -1,0 +1,68 @@
+.burgerConstructor
+{
+  /*  */
+}
+
+.scroll
+{
+  overflow-y: auto;
+
+  height: calc(100vh - 536px);
+}
+
+.scroll::-webkit-scrollbar
+{
+  width: 8px;
+
+  border-radius: 0;
+}
+
+.scroll::-webkit-scrollbar-track
+{
+  border-radius: 0;
+  background: #2f2f37;
+}
+
+.scroll::-webkit-scrollbar-thumb
+{
+  border-radius: 0;
+  background: #8585ad;
+}
+
+.item
+{
+  display: flex;
+
+  align-items: center;
+}
+
+.item:first-child
+{
+  margin-top: 0;
+}
+
+.nav
+{
+  display: flex;
+
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.total
+{
+  display: flex;
+
+  align-items: center;
+}
+
+.icon svg
+{
+  width: 36px;
+  height: 36px;
+}
+
+.count
+{
+  color: #f2f2f3;
+}
