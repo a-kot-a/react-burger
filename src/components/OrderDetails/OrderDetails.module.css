@@ -43,3 +43,10 @@
 
   color: #8585ad;
 }
+
+.loader
+{
+  display: block;
+
+  margin: 0 auto;
+}

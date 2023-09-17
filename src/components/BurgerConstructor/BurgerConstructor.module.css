@@ -29,6 +29,16 @@
   background: #8585ad;
 }
 
+.bun
+{
+  display: flex;
+}
+
+.bunText
+{
+  justify-content: center;
+}
+
 .item
 {
   display: flex;
@@ -65,4 +75,30 @@
 .count
 {
   color: #f2f2f3;
+}
+
+.empty
+{
+  display: flex;
+
+  max-width: 536px;
+  height: 100%;
+
+  border-radius: 40px;
+  background: #2f2f37;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.empty_canDrop,
+.emptyBun_canDrop
+{
+  background: #68688d;
+}
+
+.empty_isOver,
+.emptyBun_isOver
+{
+  background: #8181c4;
 }
