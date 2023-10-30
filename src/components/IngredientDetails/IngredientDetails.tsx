@@ -1,8 +1,15 @@
+import { useSelector } from 'react-redux';
 import IngredientDetailsStyles from './IngredientDetails.module.css';
-import { ingredientType } from '../../utils/types';
 
-function IngredientDetails({ ingredient }: { ingredient: ingredientType }) {
-  const { image_large, name, calories, proteins, fat, carbohydrates } = ingredient;
+function IngredientDetails() {
+  const {
+    image_large,
+    name,
+    calories,
+    proteins,
+    fat,
+    carbohydrates
+  } = useSelector((state: any) => state.ingredientDetails.get('ingredient'));
 
   return (
     <section className={ IngredientDetailsStyles.ingredientDetails }>
