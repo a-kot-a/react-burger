@@ -1,0 +1,40 @@
+.profile
+{
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-top: 120px;
+}
+
+.body
+{
+  display: flex;
+}
+
+.sidebar
+{
+  width: 320px;
+}
+
+.menu
+{
+  display: flex;
+  flex-direction: column;
+}
+
+.menuItem
+{
+  padding: 17px 0;
+
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+
+  color: #fff;
+  border: none;
+  background: transparent;
+}
+
+.menuActive
+{
+  color: #fff;
+}

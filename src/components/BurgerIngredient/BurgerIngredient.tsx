@@ -5,8 +5,8 @@ import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-c
 import { ingredientType } from '../../utils/types';
 
 function BurgerIngredient(
-  { ingredient, onClick } :
-  { ingredient: ingredientType, onClick: (ingredient: ingredientType) => void }
+  { ingredient } :
+  { ingredient: ingredientType }
 ) {
   const { bun, ingredients} = useSelector((state: any) => state.burgerConstructor).toJS();
 
@@ -26,7 +26,6 @@ function BurgerIngredient(
   return (
     <div
       ref={ dragRef }
-      onClick={ () => onClick(ingredient) }
       className={ BurgerIngredientStyles.card }
       style={{ opacity }}
     >

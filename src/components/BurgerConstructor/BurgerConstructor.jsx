@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useDrop } from 'react-dnd';
+import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import {
   burgerConstructorAdd,
@@ -22,11 +23,19 @@ import {
 
 function BurgerConstructor() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { bun, ingredients} = useSelector(state => state.burgerConstructor).toJS();
+  const { user } = useSelector(state => state.profile).toJS();
 
   const { isModalOpen, openModal, closeModal } = useModal();
 
   const handleOpenModal = () => {
+    if(!user) {
+      navigate('/login');
+
+      return null;
+    }
+
     dispatch(orderDetailsFetch(ingredients.map(i => i._id)));
 
     openModal();

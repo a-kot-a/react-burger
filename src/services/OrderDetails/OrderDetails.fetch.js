@@ -1,4 +1,4 @@
-import { request } from "../../utils/request";
+import { requestWithRefresh } from 'Utils/request';
 import { burgerConstructorClear } from '../BurgerConstructor/BurgerConstructor.actions';
 import {
   orderDetailsFetchRequest,
@@ -9,8 +9,11 @@ import {
 export const orderDetailsFetch = ingredients => dispatch => {
   dispatch(orderDetailsFetchRequest())
 
-  request('orders', {
-    headers: { 'Content-Type': 'application/json' },
+  requestWithRefresh('orders', {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+    },
     method: 'POST',
     body: JSON.stringify({ ingredients: ingredients }),
   })
@@ -18,5 +21,5 @@ export const orderDetailsFetch = ingredients => dispatch => {
       dispatch(orderDetailsFetchSuccess(result));
       dispatch(burgerConstructorClear());
     })
-    .catch(errors => { dispatch(orderDetailsFetchError(errors)) })
+    .catch(errors => dispatch(orderDetailsFetchError(errors)))
 };

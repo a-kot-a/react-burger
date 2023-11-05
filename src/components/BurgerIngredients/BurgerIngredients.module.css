@@ -54,30 +54,7 @@
 
 .card
 {
-  position: relative;
-
-  width: 272px;
-
-  cursor: pointer;
-}
-
-.price
-{
-  display: flex;
-
-  color: #f2f2f3;
-
-  justify-content: center;
-  align-items: center;
-}
-
-.title
-{
-  min-height: 48px;
-
-  text-align: center;
-
-  color: #f2f2f3;
+  text-decoration: none;
 }
 
 .loader

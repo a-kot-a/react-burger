@@ -3,6 +3,17 @@
   /*  */
 }
 
+.topic
+{
+  line-height: 64px;
+
+  margin-top: calc(var(--offset-base-size) * 30);
+
+  text-align: center;
+
+  color: #f2f2f3;;
+}
+
 .img img
 {
   display: block;
@@ -34,12 +45,12 @@
 
 .paramsTitle
 {
-  color: #8585AD;
+  color: #8585ad;
 }
 
 .paramsText
 {
-  color: #8585AD;
+  color: #8585ad;
 }
 
 .paramsItem:last-child
