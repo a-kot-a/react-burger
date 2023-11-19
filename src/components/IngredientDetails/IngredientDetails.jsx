@@ -1,7 +1,22 @@
 import { useSelector } from 'react-redux';
+import { Navigate, useParams } from 'react-router-dom';
 import IngredientDetailsStyles from './IngredientDetails.module.css';
+import PropTypes from 'prop-types';
 
-function IngredientDetails() {
+function IngredientDetails({ topic }) {
+  const { ingredients } = useSelector(state => state.burgerIngredients).toJS();
+  const { id } = useParams();
+
+  const ingredient = ingredients.find(i => i._id === id);
+
+  if(!ingredients.length) {
+    return null;
+  }
+
+  if(!ingredient) {
+    return <Navigate to='/404' />
+  }
+
   const {
     image_large,
     name,
@@ -9,10 +24,16 @@ function IngredientDetails() {
     proteins,
     fat,
     carbohydrates
-  } = useSelector((state: any) => state.ingredientDetails.get('ingredient'));
+  } = ingredient;
 
   return (
     <section className={ IngredientDetailsStyles.ingredientDetails }>
+      {
+        topic &&
+          <h2 className={ `${ IngredientDetailsStyles.topic} text text_type_main-large` }>
+            { topic }
+          </h2>
+      }
       <div className={ IngredientDetailsStyles.img }>
         <img src={ image_large } alt={ name } />
       </div>
@@ -56,5 +77,9 @@ function IngredientDetails() {
     </section>
   );
 }
+
+IngredientDetails.propTypes = {
+  topic: PropTypes.string,
+};
 
 export default IngredientDetails;

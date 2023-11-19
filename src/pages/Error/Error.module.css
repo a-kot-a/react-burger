@@ -1,0 +1,20 @@
+.error
+{
+  text-align: center;
+}
+
+.img img
+{
+  display: block;
+
+  width: 360px;
+  margin: 0 auto;
+
+  border-radius: 60px;
+}
+
+
+.link
+{
+  display: inline-block;
+}

@@ -9,6 +9,6 @@ export const ingredientsFetch = () => dispatch => {
   dispatch(ingredientsFetchRequest())
 
   request('ingredients')
-    .then(result => { dispatch(ingredientsFetchSuccess(result.data)) })
-    .catch(errors => { dispatch(ingredientsFetchError(errors)) })
+    .then(result => dispatch(ingredientsFetchSuccess(result.data)))
+    .catch(errors => dispatch(ingredientsFetchError(errors)))
 }

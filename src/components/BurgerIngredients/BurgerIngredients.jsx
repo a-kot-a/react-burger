@@ -1,37 +1,16 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Dna } from 'react-loader-spinner';
-import { ingredientsFetch } from '../../services/BurgerIngredients/BurgerIngredients.fetch';
+import { Link, useLocation } from 'react-router-dom';
 import BurgerIngredient from '../BurgerIngredient/BurgerIngredient';
-import { addIngredientDetails, deleteIngredientDetails } from '../../services/IngredientDetails/IngredientDetails.actions';
 import BurgerIngredientsStyles from './BurgerIngredients.module.css';
-import { useModal } from '../../hooks/useModal';
-import Modal from '../Modal/Modal';
-import IngredientDetails from '../IngredientDetails/IngredientDetails';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 
 function BurgerIngredients() {
-  const dispatch = useDispatch();
+  const location = useLocation();
 
   const { request, ingredients } = useSelector(state => state.burgerIngredients).toJS();
   const [ currentTab, setСurrentTab ] = React.useState('bun');
-  const { isModalOpen, openModal, closeModal } = useModal();
-
-  React.useEffect(() => {
-    dispatch(ingredientsFetch())
-  }, [dispatch]);
-
-  const handleOpenModal = ingredient => {
-    dispatch(addIngredientDetails(ingredient));
-
-    openModal();
-  }
-
-  const handleCloseModal = () => {
-    dispatch(deleteIngredientDetails());
-
-    closeModal();
-  }
 
   const handleTabClick = elem => {
     elem.scrollIntoView({ behavior: 'smooth' });
@@ -131,11 +110,14 @@ function BurgerIngredients() {
                   ingredients
                   .filter(j => j.type === i.type)
                   .map(ingredient => (
-                    <BurgerIngredient
+                    <Link
                       key={ ingredient._id }
-                      ingredient={ ingredient }
-                      onClick={ handleOpenModal }
-                    />
+                      to={ `/ingredients/${ingredient._id}` }
+                      state={{ backgroundLocation: location }}
+                      className={ BurgerIngredientsStyles.card }
+                    >
+                      <BurgerIngredient ingredient={ ingredient } />
+                    </Link>
                   ))
                 }
               </div>
@@ -143,12 +125,6 @@ function BurgerIngredients() {
           ))
         }
       </div>
-      {
-        isModalOpen &&
-          <Modal topic={'Детали ингредиента'} close={ handleCloseModal }>
-            <IngredientDetails />
-          </Modal>
-      }
     </section>
   );
 }
