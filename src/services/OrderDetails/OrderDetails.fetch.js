@@ -1,5 +1,5 @@
 import { requestWithRefresh } from 'Utils/request';
-import { burgerConstructorClear } from '../BurgerConstructor/BurgerConstructor.actions';
+import { burgerConstructorClear } from 'Services/BurgerConstructor/BurgerConstructor.actions';
 import {
   orderDetailsFetchRequest,
   orderDetailsFetchSuccess,

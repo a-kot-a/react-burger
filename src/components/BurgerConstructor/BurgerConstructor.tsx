@@ -8,24 +8,25 @@ import {
   burgerConstructorDelete,
   burgerConstructorAddBun,
   burgerConstructorSort,
-} from '../../services/BurgerConstructor/BurgerConstructor.actions';
-import { orderDetailsFetch } from '../../services/OrderDetails/OrderDetails.fetch';
-import BurgerConstructorIngredient from '../BurgerConstructorIngredient/BurgerConstructorIngredient';
+} from 'Services/BurgerConstructor/BurgerConstructor.actions';
+import { orderDetailsFetch } from 'Services/OrderDetails/OrderDetails.fetch';
+import BurgerConstructorIngredient from 'Components/BurgerConstructorIngredient/BurgerConstructorIngredient';
 import BurgerConstructorStyles from './BurgerConstructor.module.css';
-import { useModal } from '../../hooks/useModal';
-import Modal from '../Modal/Modal';
-import OrderDetails from '../OrderDetails/OrderDetails';
+import { useModal } from 'Hooks/useModal';
+import Modal from 'Components/Modal/Modal';
+import OrderDetails from 'Components/OrderDetails/OrderDetails';
 import {
   Button,
   CurrencyIcon,
   ConstructorElement,
 } from '@ya.praktikum/react-developer-burger-ui-components';
+import { IIngredientTypes } from 'Utils/types';
 
 function BurgerConstructor() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { bun, ingredients} = useSelector(state => state.burgerConstructor).toJS();
-  const { user } = useSelector(state => state.profile).toJS();
+  const { bun, ingredients} = useSelector((state: any) => state.burgerConstructor).toJS();
+  const { user } = useSelector((state: any) => state.profile).toJS();
 
   const { isModalOpen, openModal, closeModal } = useModal();
 
@@ -36,18 +37,18 @@ function BurgerConstructor() {
       return null;
     }
 
-    dispatch(orderDetailsFetch(ingredients.map(i => i._id)));
+    dispatch(orderDetailsFetch(ingredients.map((i: IIngredientTypes) => i._id)) as any);
 
     openModal();
   }
 
-  const handleDeleteIngredient = id => {
+  const handleDeleteIngredient = (id: string) => {
     dispatch(burgerConstructorDelete(id));
   }
 
   const [{ isOverBun, canDropBun, isOverIngredient, canDropIngredient }, dropRef] = useDrop({
     accept: 'ingredient.add',
-    drop(ingredient) {
+    drop(ingredient: IIngredientTypes) {
       const uniqueIngredient = {
         ...ingredient,
         id: uuidv4(),
@@ -65,7 +66,7 @@ function BurgerConstructor() {
     }),
   });
 
-  const renderBun = type => {
+  const renderBun = (type: 'top' | 'bottom') => {
     if(!bun) {
       return (
         <div
@@ -92,9 +93,9 @@ function BurgerConstructor() {
     )
   }
 
-  const totalPrice = ingredients.reduce((acc, i) => acc + i.price, bun?.price * 2 || 0);
+  const totalPrice = ingredients.reduce((acc: number, i: IIngredientTypes) => acc + (i.price || 0), bun?.price * 2 || 0);
 
-  const moveCard = useCallback((dragIndex, hoverIndex) => {
+  const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
     dispatch(burgerConstructorSort(dragIndex, hoverIndex));
   }, [dispatch])
 
@@ -118,14 +119,16 @@ function BurgerConstructor() {
         }
         {
           ingredients
-          .map((ingredient, index) => (
+          .map((ingredient: IIngredientTypes, index: number) => (
             <BurgerConstructorIngredient
               key={ ingredient.id }
               id={ ingredient.id }
               index={ index }
               moveCard={ moveCard }
               handleClose={ handleDeleteIngredient }
-              { ...ingredient }
+              name={ ingredient.name }
+              price={ ingredient.price }
+              image={ ingredient.image }
             />
           ))
         }

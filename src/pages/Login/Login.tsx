@@ -1,22 +1,22 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { loginFetch } from '../../services/Login/Login.fetch';
+import { loginFetch } from 'Services/Login/Login.fetch';
 import LoginStyles from './Login.module.css';
 import { EmailInput, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useForm } from 'Hooks/useForm';
 
 function Login() {
-  const { request, error } = useSelector(state => state.login).toJS();
+  const { request, error } = useSelector((state: any) => state.login).toJS();
   const dispatch = useDispatch();
   const { values, handleChange } = useForm({
     email: '',
     password: '',
   });
 
-  const handleLogin = e => {
+  const handleLogin = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    dispatch(loginFetch(values));
+    dispatch(loginFetch(values) as any);
   }
 
   return (

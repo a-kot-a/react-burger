@@ -1,24 +1,43 @@
 import { useRef } from 'react';
-import { useDrag, useDrop } from 'react-dnd';
+import { useDrag, useDrop, DropTargetMonitor } from 'react-dnd';
+import type { Identifier, XYCoord } from 'dnd-core'
 import BurgerConstructorIngredient from './BurgerConstructorIngredient.module.css';
 import {
   DragIcon,
   ConstructorElement,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import PropTypes from 'prop-types';
 
-function BurgerConstructor({ id, index, moveCard, name, price, image, handleClose }) {
+interface IBurgerConstructorProps {
+  id: string,
+  index: number,
+  name: string,
+  price: number,
+  image: string,
+  moveCard: (dragIndex: number, hoverIndex: number) => void,
+  handleClose: (id: string) => void,
+}
 
-  const ref = useRef(null);
+interface DragItem {
+  index: number
+  id: string
+  type: string
+}
 
-  const [{ handlerId }, drop] = useDrop({
+function BurgerConstructor({ id, index, name, price, image, moveCard, handleClose }: IBurgerConstructorProps) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  const [{ handlerId }, drop] = useDrop<
+    DragItem,
+    void,
+    { handlerId: Identifier | null }
+  >({
     accept: 'ingredient.sort',
     collect(monitor) {
       return {
         handlerId: monitor.getHandlerId(),
       }
     },
-    hover(item, monitor) {
+    hover(item: DragItem, monitor: DropTargetMonitor) {
       if (!ref.current) {
         return
       }
@@ -35,7 +54,7 @@ function BurgerConstructor({ id, index, moveCard, name, price, image, handleClos
 
       const clientOffset = monitor.getClientOffset()
 
-      const hoverClientY = clientOffset.y - hoverBoundingRect.top
+      const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top
 
       if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
         return
@@ -85,15 +104,5 @@ function BurgerConstructor({ id, index, moveCard, name, price, image, handleClos
     </div>
   );
 }
-
-BurgerConstructor.propTypes = {
-  id: PropTypes.string,
-  index: PropTypes.number,
-  moveCard: PropTypes.func,
-  name: PropTypes.string,
-  price: PropTypes.number,
-  image: PropTypes.string,
-  handleClose: PropTypes.func,
-};
 
 export default BurgerConstructor;

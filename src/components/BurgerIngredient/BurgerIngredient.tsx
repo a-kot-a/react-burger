@@ -2,11 +2,11 @@ import { useSelector } from 'react-redux';
 import { useDrag } from 'react-dnd';
 import BurgerIngredientStyles from './BurgerIngredient.module.css';
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { ingredientType } from '../../utils/types';
+import { IIngredientTypes } from 'Utils/types';
 
 function BurgerIngredient(
   { ingredient } :
-  { ingredient: ingredientType }
+  { ingredient: IIngredientTypes }
 ) {
   const { bun, ingredients} = useSelector((state: any) => state.burgerConstructor).toJS();
 
@@ -21,7 +21,7 @@ function BurgerIngredient(
   }));
 
   const countBun = bun?._id === _id;
-  const countIngredient = ingredients.filter((i: ingredientType) => i._id === _id).length;
+  const countIngredient = ingredients.filter((i: IIngredientTypes) => i._id === _id).length;
 
   return (
     <div

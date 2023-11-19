@@ -24,7 +24,7 @@ function App() {
   const navigate = useNavigate();
   const state = location.state;
 
-  React.useEffect(() => dispatch(ingredientsFetch()), [dispatch]);
+  React.useEffect(() => dispatch(ingredientsFetch() as any), [dispatch]);
 
   const modalClose = () => navigate(-1);
 

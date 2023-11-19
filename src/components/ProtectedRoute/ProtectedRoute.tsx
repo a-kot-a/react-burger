@@ -3,8 +3,8 @@ import { Navigate, useLocation } from 'react-router-dom';
 import { Dna } from 'react-loader-spinner';
 import ProtectedRouteStyles from './ProtectedRoute.module.css';
 
-function Protected({ onlyUnAuth = false, component }) {
-  const { isAuthChecked, user } = useSelector(state => state.profile).toJS();
+function Protected({ onlyUnAuth = false, component }: { onlyUnAuth?: boolean, component: JSX.Element, }) {
+  const { isAuthChecked, user } = useSelector((state: any) => state.profile).toJS();
   const location = useLocation();
 
   if(!isAuthChecked) {
@@ -32,4 +32,4 @@ function Protected({ onlyUnAuth = false, component }) {
 }
 
 export const OnlyAuth = Protected;
-export const OnlyUnAuth = ({ component }) => <Protected onlyUnAuth={ true } component={ component } />;
+export const OnlyUnAuth = ({ component }: { component: JSX.Element }) => <Protected onlyUnAuth={ true } component={ component } />;

@@ -15,7 +15,7 @@ function AppHeader() {
     profile: ProfileIcon,
   };
 
-  const Link = ({to, icon, name}) => {
+  const Link = ({ to, icon, name }: { to: string, icon: keyof typeof icons, name: string }) => {
     const Icon = icons[icon];
 
     return (
