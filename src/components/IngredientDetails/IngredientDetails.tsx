@@ -1,13 +1,13 @@
 import { useSelector } from 'react-redux';
 import { Navigate, useParams } from 'react-router-dom';
 import IngredientDetailsStyles from './IngredientDetails.module.css';
-import PropTypes from 'prop-types';
+import { IIngredientTypes } from 'Utils/types';
 
-function IngredientDetails({ topic }) {
-  const { ingredients } = useSelector(state => state.burgerIngredients).toJS();
+function IngredientDetails({ topic }: { topic?: string }) {
+  const { ingredients } = useSelector((state: any) => state.burgerIngredients).toJS();
   const { id } = useParams();
 
-  const ingredient = ingredients.find(i => i._id === id);
+  const ingredient = ingredients.find((i: IIngredientTypes) => i._id === id);
 
   if(!ingredients.length) {
     return null;
@@ -77,9 +77,5 @@ function IngredientDetails({ topic }) {
     </section>
   );
 }
-
-IngredientDetails.propTypes = {
-  topic: PropTypes.string,
-};
 
 export default IngredientDetails;

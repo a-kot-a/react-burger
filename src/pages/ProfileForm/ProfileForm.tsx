@@ -6,9 +6,10 @@ import { Input, EmailInput, PasswordInput, Button } from '@ya.praktikum/react-de
 import { useForm } from 'Hooks/useForm';
 
 function ProfileForm() {
-  const { request, user, error } = useSelector(state => state.profile).toJS();
+  const { request, user, error } = useSelector((state: any) => state.profile).toJS();
   const dispatch = useDispatch();
-  const inputNameRef = React.useRef(null);
+  const inputNameRef = React.useRef<HTMLInputElement>(null);
+
   const { values, handleChange, setValues } = useForm({
     email: user.email,
     password: '',
@@ -18,7 +19,7 @@ function ProfileForm() {
   const [nameDisabled, setNameDisabled] = React.useState(true);
   const [isNavShow, setIsNavShow] = React.useState(false);
 
-  const onChange = e => {
+  const onChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     handleChange(e);
 
     setIsNavShow(true);
@@ -32,7 +33,7 @@ function ProfileForm() {
   const onNameClick = () => {
     setNameDisabled(false);
 
-    setTimeout(() => inputNameRef.current.focus(), 0)
+    setTimeout(() => inputNameRef.current?.focus(), 0)
   }
 
   const onNameBlur = () => {
@@ -49,10 +50,10 @@ function ProfileForm() {
     setIsNavShow(false);
   }
 
-  const handleSave = e => {
+  const handleSave = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    dispatch(profileSetFetch(values));
+    dispatch(profileSetFetch(values) as any);
   }
 
   return (

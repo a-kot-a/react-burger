@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { registrationFetch } from '../../services/Registration/Registration.fetch';
+import { registrationFetch } from 'Services/Registration/Registration.fetch';
 import RegistrationStyles from './Registration.module.css';
 import { Input, EmailInput, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useForm } from 'Hooks/useForm';
 
 function Registration() {
-  const { request, error } = useSelector(state => state.registration).toJS();
+  const { request, error } = useSelector((state: any) => state.registration).toJS();
   const dispatch = useDispatch();
   const { values, handleChange } = useForm({
     email: '',
@@ -14,10 +14,10 @@ function Registration() {
     name: '',
   });
 
-  const handleRegistration = e => {
+  const handleRegistration = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    dispatch(registrationFetch(values));
+    dispatch(registrationFetch(values) as any);
   }
 
   return (

@@ -6,7 +6,7 @@ function AuthChecked() {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(profileAuthCheckedFetch())
+    dispatch(profileAuthCheckedFetch() as any)
   }, [dispatch]);
 
   return null;

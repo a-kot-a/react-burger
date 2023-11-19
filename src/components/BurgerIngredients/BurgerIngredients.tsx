@@ -2,24 +2,25 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Dna } from 'react-loader-spinner';
 import { Link, useLocation } from 'react-router-dom';
-import BurgerIngredient from '../BurgerIngredient/BurgerIngredient';
+import BurgerIngredient from 'Components/BurgerIngredient/BurgerIngredient';
 import BurgerIngredientsStyles from './BurgerIngredients.module.css';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
+import { IIngredientTypes } from 'Utils/types';
 
 function BurgerIngredients() {
   const location = useLocation();
 
-  const { request, ingredients } = useSelector(state => state.burgerIngredients).toJS();
+  const { request, ingredients } = useSelector((state: any) => state.burgerIngredients).toJS();
   const [ currentTab, setСurrentTab ] = React.useState('bun');
 
-  const handleTabClick = elem => {
-    elem.scrollIntoView({ behavior: 'smooth' });
+  const handleTabClick = (elem: HTMLDivElement | null) => {
+    elem?.scrollIntoView({ behavior: 'smooth' });
   }
 
-  const bodyRef = React.useRef(null);
-  const bunRef = React.useRef(null);
-  const sauceRef = React.useRef(null);
-  const mainRef = React.useRef(null);
+  const bodyRef = React.useRef<HTMLDivElement>(null);
+  const bunRef = React.useRef<HTMLDivElement>(null);
+  const sauceRef = React.useRef<HTMLDivElement>(null);
+  const mainRef = React.useRef<HTMLDivElement>(null);
 
   const ingredientsTypes = React.useMemo(
     () => [
@@ -43,10 +44,10 @@ function BurgerIngredients() {
   );
 
   const handleActiveTab = React.useCallback(() => {
-    const body = bodyRef.current.getBoundingClientRect().y;
-    const bun = bunRef.current.getBoundingClientRect().y;
-    const sauce = sauceRef.current.getBoundingClientRect().y;
-    const main = mainRef.current.getBoundingClientRect().y;
+    const body = bodyRef.current?.getBoundingClientRect().y || 0;
+    const bun = bunRef.current?.getBoundingClientRect().y || 0;
+    const sauce = sauceRef.current?.getBoundingClientRect().y || 0;
+    const main = mainRef.current?.getBoundingClientRect().y || 0;
 
     const arr = [
       Math.abs(body - bun),
@@ -63,10 +64,10 @@ function BurgerIngredients() {
   React.useEffect(() => {
     const body = bodyRef.current;
 
-    body.addEventListener('scroll', handleActiveTab);
+    body?.addEventListener('scroll', handleActiveTab);
 
     return () => {
-      body.removeEventListener('scroll', handleActiveTab);
+      body?.removeEventListener('scroll', handleActiveTab);
     };
   }, [handleActiveTab]);
 
@@ -108,8 +109,8 @@ function BurgerIngredients() {
               <div className={ `${ BurgerIngredientsStyles.list } pl-4 pr-2` }>
                 {
                   ingredients
-                  .filter(j => j.type === i.type)
-                  .map(ingredient => (
+                  .filter((j: IIngredientTypes )=> j.type === i.type)
+                  .map((ingredient: IIngredientTypes) => (
                     <Link
                       key={ ingredient._id }
                       to={ `/ingredients/${ingredient._id}` }

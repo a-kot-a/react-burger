@@ -8,7 +8,7 @@ function Profile() {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    dispatch(logoutFetch());
+    dispatch(logoutFetch() as any);
   }
 
   return (
