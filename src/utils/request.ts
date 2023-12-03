@@ -1,4 +1,6 @@
-export const BASE_URL = "https://norma.nomoreparties.space/api/";
+export const BASE_URL = 'https://norma.nomoreparties.space/api/';
+export const ORDERS_ALL_URL = 'wss://norma.nomoreparties.space/orders/all';
+export const ORDERS_URL = `wss://norma.nomoreparties.space/orders?token=${ localStorage.getItem('accessToken') }`;
 
 const checkResponse = (res: Response) => {
   if (res.ok) {
@@ -16,7 +18,7 @@ const checkSuccess = (res: { success: boolean }) => {
   return Promise.reject(`Ответ не success: ${res}`);
 };
 
-export const request = (endpoint: string, options: RequestInit) => {
+export const request = (endpoint: string, options?: RequestInit) => {
   return fetch(`${ BASE_URL }${ endpoint }`, options)
     .then(checkResponse)
     .then(checkSuccess);

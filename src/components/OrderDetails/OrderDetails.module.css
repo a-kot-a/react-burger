@@ -1,6 +1,12 @@
-.orderDetails
+.OrderDetails
 {
-  padding-bottom: 60px;
+  max-width: 640px;
+  margin: calc(var(--offset-base-size) * 30) auto 0;
+}
+
+.OrderDetailsModModal
+{
+  margin: -40px 0 0;
 }
 
 .number
@@ -8,45 +14,131 @@
   text-align: center;
 
   color: #f2f2f3;
-  text-shadow: 0 4px 32px rgba(51, 51, 255, .50), 0 0 8px rgba(51, 51, 255, .25), 0 0 16px rgba(51, 51, 255, .25);
 }
 
-.topic
+.OrderDetailsModModal .number
 {
-  text-align: center;
+  text-align: left;
+}
 
+.name
+{
   color: #f2f2f3;
-}
-
-.icon
-{
-  padding: 8px 0 8px;
-}
-
-.icon img
-{
-  display: block;
-
-  margin: 0 auto;
 }
 
 .status
 {
-  text-align: center;
+  color: #f2f2f3;
+}
+
+.statusModDone
+{
+  color: var(--colors-interface-success);
+}
+
+.compositionList
+{
+  font-size: 0;
+  line-height: 0;
+
+  display: flex;
+  overflow-y: auto;
+  flex-direction: column;
+
+  max-height: 312px;
+  padding-right: calc(var(--offset-base-size) * 6);
+
+  gap: calc(var(--offset-base-size) * 4);
+}
+
+.compositionList::-webkit-scrollbar
+{
+  width: 8px;
+
+  border-radius: 0;
+}
+
+.compositionList::-webkit-scrollbar-track
+{
+  border-radius: 0;
+  background: #2f2f37;
+}
+
+.compositionList::-webkit-scrollbar-thumb
+{
+  border-radius: 0;
+  background: #8585ad;
+}
+
+.compositionItem
+{
+  display: flex;
+
+  align-items: center;
+}
+
+.compositionIngredient
+{
+  position: relative;
+
+  box-sizing: border-box;
+  padding: 2px;
+
+  border-radius: 50%;
+  background: linear-gradient(63.18deg, #801ab3 0%, #4c4cff 100%);
+}
+
+.compositionIngredientBody
+{
+  width: 60px;
+  height: 60px;
+
+  border-radius: 50%;
+  background: var(--background-alt);
+}
+
+.compositionIngredientImg
+{
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.compositionName
+{
+  max-width: 320px;
+  margin-right: calc(var(--offset-base-size) * 4);
 
   color: #f2f2f3;
 }
 
-.text
+.compositionPrice
 {
-  text-align: center;
+  display: flex;
 
-  color: #8585ad;
+  margin-left: auto;
+
+  color: #f2f2f3;
 }
 
-.loader
+.footer
 {
-  display: block;
+  display: flex;
 
-  margin: 0 auto;
+  justify-content: space-between;
+}
+
+.date
+{
+  /*  */
+}
+
+.price
+{
+  display: flex;
+
+  margin-left: calc(var(--offset-base-size) * 4);
+
+  color: #f2f2f3;
 }

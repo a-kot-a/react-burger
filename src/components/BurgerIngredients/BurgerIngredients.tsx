@@ -1,16 +1,15 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector } from 'Services/store';
 import { Dna } from 'react-loader-spinner';
 import { Link, useLocation } from 'react-router-dom';
 import BurgerIngredient from 'Components/BurgerIngredient/BurgerIngredient';
 import BurgerIngredientsStyles from './BurgerIngredients.module.css';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
-import { IIngredientTypes } from 'Utils/types';
 
 function BurgerIngredients() {
   const location = useLocation();
 
-  const { request, ingredients } = useSelector((state: any) => state.burgerIngredients).toJS();
+  const { request, ingredients } = useSelector(state => state.burgerIngredients);
   const [ currentTab, setСurrentTab ] = React.useState('bun');
 
   const handleTabClick = (elem: HTMLDivElement | null) => {
@@ -109,8 +108,8 @@ function BurgerIngredients() {
               <div className={ `${ BurgerIngredientsStyles.list } pl-4 pr-2` }>
                 {
                   ingredients
-                  .filter((j: IIngredientTypes )=> j.type === i.type)
-                  .map((ingredient: IIngredientTypes) => (
+                  .filter(j => j.type === i.type)
+                  .map(ingredient => (
                     <Link
                       key={ ingredient._id }
                       to={ `/ingredients/${ingredient._id}` }

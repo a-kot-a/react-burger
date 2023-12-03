@@ -1,4 +1,5 @@
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'Services/store';
 import { Link } from 'react-router-dom';
 import { loginFetch } from 'Services/Login/Login.fetch';
 import LoginStyles from './Login.module.css';
@@ -6,7 +7,7 @@ import { EmailInput, PasswordInput, Button } from '@ya.praktikum/react-developer
 import { useForm } from 'Hooks/useForm';
 
 function Login() {
-  const { request, error } = useSelector((state: any) => state.login).toJS();
+  const { request, error } = useSelector((state) => state.login);
   const dispatch = useDispatch();
   const { values, handleChange } = useForm({
     email: '',
@@ -16,7 +17,8 @@ function Login() {
   const handleLogin = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    dispatch(loginFetch(values) as any);
+    // @ts-ignore
+    dispatch(loginFetch(values));
   }
 
   return (

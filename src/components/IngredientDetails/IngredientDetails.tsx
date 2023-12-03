@@ -1,13 +1,12 @@
-import { useSelector } from 'react-redux';
+import { useSelector } from 'Services/store';
 import { Navigate, useParams } from 'react-router-dom';
 import IngredientDetailsStyles from './IngredientDetails.module.css';
-import { IIngredientTypes } from 'Utils/types';
 
 function IngredientDetails({ topic }: { topic?: string }) {
-  const { ingredients } = useSelector((state: any) => state.burgerIngredients).toJS();
+  const { ingredients } = useSelector(state => state.burgerIngredients);
   const { id } = useParams();
 
-  const ingredient = ingredients.find((i: IIngredientTypes) => i._id === id);
+  const ingredient = ingredients.find(i => i._id === id);
 
   if(!ingredients.length) {
     return null;

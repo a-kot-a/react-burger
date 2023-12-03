@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'Services/store';
 import { useDrop } from 'react-dnd';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
@@ -9,24 +9,24 @@ import {
   burgerConstructorAddBun,
   burgerConstructorSort,
 } from 'Services/BurgerConstructor/BurgerConstructor.actions';
-import { orderDetailsFetch } from 'Services/OrderDetails/OrderDetails.fetch';
+import { orderCheckoutFetch } from 'Services/OrderCheckout/OrderCheckout.fetch';
 import BurgerConstructorIngredient from 'Components/BurgerConstructorIngredient/BurgerConstructorIngredient';
 import BurgerConstructorStyles from './BurgerConstructor.module.css';
 import { useModal } from 'Hooks/useModal';
 import Modal from 'Components/Modal/Modal';
-import OrderDetails from 'Components/OrderDetails/OrderDetails';
+import OrderCheckout from 'Components/OrderCheckout/OrderCheckout';
 import {
   Button,
   CurrencyIcon,
   ConstructorElement,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import { IIngredientTypes } from 'Utils/types';
+import { IIngredient } from 'Types/Ingredient';
 
 function BurgerConstructor() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { bun, ingredients} = useSelector((state: any) => state.burgerConstructor).toJS();
-  const { user } = useSelector((state: any) => state.profile).toJS();
+  const { bun, ingredients} = useSelector((state) => state.burgerConstructor);
+  const { user } = useSelector((state) => state.profile);
 
   const { isModalOpen, openModal, closeModal } = useModal();
 
@@ -37,7 +37,8 @@ function BurgerConstructor() {
       return null;
     }
 
-    dispatch(orderDetailsFetch(ingredients.map((i: IIngredientTypes) => i._id)) as any);
+    // @ts-ignore
+    dispatch(orderCheckoutFetch([...ingredients.map(i => i._id), bun._id, bun._id]));
 
     openModal();
   }
@@ -48,7 +49,7 @@ function BurgerConstructor() {
 
   const [{ isOverBun, canDropBun, isOverIngredient, canDropIngredient }, dropRef] = useDrop({
     accept: 'ingredient.add',
-    drop(ingredient: IIngredientTypes) {
+    drop(ingredient: IIngredient) {
       const uniqueIngredient = {
         ...ingredient,
         id: uuidv4(),
@@ -93,7 +94,7 @@ function BurgerConstructor() {
     )
   }
 
-  const totalPrice = ingredients.reduce((acc: number, i: IIngredientTypes) => acc + (i.price || 0), bun?.price * 2 || 0);
+  const totalPrice = ingredients.reduce((acc, i) => acc + i.price, (bun?.price || 0) * 2);
 
   const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
     dispatch(burgerConstructorSort(dragIndex, hoverIndex));
@@ -119,7 +120,7 @@ function BurgerConstructor() {
         }
         {
           ingredients
-          .map((ingredient: IIngredientTypes, index: number) => (
+          .map((ingredient: IIngredient, index: number) => (
             <BurgerConstructorIngredient
               key={ ingredient.id }
               id={ ingredient.id }
@@ -140,7 +141,7 @@ function BurgerConstructor() {
       <div className={ `${ BurgerConstructorStyles.nav } mt-10 pr-4` }>
         <div className={ `${ BurgerConstructorStyles.total } mr-10` }>
           <p className={ `${ BurgerConstructorStyles.count } text text_type_digits-medium mr-2` }>
-            { totalPrice }
+            { totalPrice.toLocaleString('ru') }
           </p>
           <div className={ BurgerConstructorStyles.icon }>
             <CurrencyIcon type="primary" />
@@ -159,7 +160,7 @@ function BurgerConstructor() {
       {
         isModalOpen &&
           <Modal close={ closeModal }>
-            <OrderDetails />
+            <OrderCheckout />
           </Modal>
       }
     </section>
