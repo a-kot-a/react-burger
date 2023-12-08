@@ -1,5 +1,6 @@
 import { request } from 'Utils/request';
-import { AppDispatch, AppThunk } from 'Types/Store';
+import { AppThunk } from 'Types/Store';
+import { IUser } from 'Types/User';
 import {
   registrationFetchRequest,
   registrationFetchSuccess,
@@ -7,7 +8,7 @@ import {
 } from './Registration.actions';
 import { profileFetchSuccess } from 'Services/Profile/Profile.actions';
 
-export const registrationFetch: AppThunk = user => (dispatch: AppDispatch) => {
+export const registrationFetch = (user: IUser): AppThunk => dispatch => {
   dispatch(registrationFetchRequest());
 
   request('auth/register', {
@@ -16,17 +17,15 @@ export const registrationFetch: AppThunk = user => (dispatch: AppDispatch) => {
     body: JSON.stringify(user),
   })
     .then(result => {
-      // @ts-ignore
       const accessToken = result.accessToken.split('Bearer ')[1];
 
       if (accessToken) {
         localStorage.setItem('accessToken', accessToken);
       }
-      // @ts-ignore
+
       localStorage.setItem('refreshToken', result.refreshToken);
 
       dispatch(registrationFetchSuccess());
-      // @ts-ignore
       dispatch(profileFetchSuccess(result));
     })
     .catch(errors => dispatch(registrationFetchError(errors)))

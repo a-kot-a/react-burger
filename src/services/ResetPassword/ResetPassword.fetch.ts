@@ -1,5 +1,6 @@
 import { request } from 'Utils/request';
-import { AppDispatch, AppThunk } from 'Types/Store';
+import { AppThunk } from 'Types/Store';
+import { IUser } from 'Types/User';
 import {
   resetPasswordFetchRequest,
   resetPasswordFetchSuccess,
@@ -7,7 +8,7 @@ import {
 } from './ResetPassword.actions';
 import { forgotPasswordFetchSuccess } from 'Services/ForgotPassword/ForgotPassword.actions'
 
-export const resetPasswordFetch: AppThunk = user => (dispatch: AppDispatch) => {
+export const resetPasswordFetch = (user: IUser): AppThunk => dispatch => {
   dispatch(resetPasswordFetchRequest());
 
   request('password-reset/reset', {

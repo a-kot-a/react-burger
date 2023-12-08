@@ -16,7 +16,6 @@ function ResetPassword() {
   const handleResetPasswordFetch = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // @ts-ignore
     dispatch(resetPasswordFetch(values));
   }
 

@@ -1,6 +1,5 @@
 import type { ThunkAction } from 'redux-thunk';
 import type {} from 'redux-thunk/extend-redux'
-
 import rootReducer from 'Services/reducers';
 import { TBurgerConstructorActions } from 'Services/BurgerConstructor/BurgerConstructor.actions';
 import { TIngredientsFetchActions } from 'Services/BurgerIngredients/BurgerIngredients.actions';

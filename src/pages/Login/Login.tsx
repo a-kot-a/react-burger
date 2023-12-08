@@ -17,7 +17,6 @@ function Login() {
   const handleLogin = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // @ts-ignore
     dispatch(loginFetch(values));
   }
 

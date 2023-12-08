@@ -53,7 +53,6 @@ function ProfileForm() {
   const handleSave = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // @ts-ignore
     dispatch(profileSetFetch(values));
   }
 

@@ -1,5 +1,6 @@
 import { requestWithRefresh } from 'Utils/request';
-import { AppDispatch, AppThunk } from 'Types/Store';
+import { AppThunk } from 'Types/Store';
+import { IUser } from 'Types/User';
 import {
   profileFetchRequest,
   profileFetchSuccess,
@@ -7,8 +8,8 @@ import {
   profileAuthChecked,
 } from './Profile.actions';
 
-export const profileGetFetch: AppThunk = () => (dispatch: AppDispatch) => {
-  dispatch(profileFetchRequest())
+export const profileGetFetch = (): AppThunk => dispatch => {
+  dispatch(profileFetchRequest());
 
   return requestWithRefresh('auth/user', {
     headers: {
@@ -25,7 +26,7 @@ export const profileGetFetch: AppThunk = () => (dispatch: AppDispatch) => {
     })
 };
 
-export const profileSetFetch: AppThunk = user => (dispatch: AppDispatch) => {
+export const profileSetFetch = (user: IUser): AppThunk => dispatch => {
   dispatch(profileFetchRequest())
 
   return requestWithRefresh('auth/user', {
@@ -40,9 +41,9 @@ export const profileSetFetch: AppThunk = user => (dispatch: AppDispatch) => {
     .catch(errors => dispatch(profileFetchError(errors)))
 };
 
-export const profileAuthCheckedFetch: AppThunk = () => (dispatch: AppDispatch) => {
+export const profileAuthCheckedFetch = (): AppThunk => dispatch => {
   if (localStorage.getItem('accessToken')) {
-    // @ts-ignore
+
     dispatch(profileGetFetch())
     // @ts-ignore
     .finally(() => {

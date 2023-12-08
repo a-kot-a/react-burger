@@ -29,8 +29,7 @@ function IngredientDetails({ isModal }: { isModal?: boolean }) {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    if(!order) {
-      // @ts-ignore
+    if(!order && id) {
       dispatch(orderDetailsFetch(id));
     }
   }, [dispatch, id, order])

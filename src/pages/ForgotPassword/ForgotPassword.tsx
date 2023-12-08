@@ -15,7 +15,6 @@ function ForgotPassword() {
   const handleForgotPassword = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // @ts-ignore
     dispatch(forgotPasswordFetch(values));
   }
 

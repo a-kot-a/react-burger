@@ -17,7 +17,6 @@ function Registration() {
   const handleRegistration = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // @ts-ignore
     dispatch(registrationFetch(values));
   }
 

@@ -13,7 +13,7 @@ function Orders() {
   const location = useLocation();
 
   React.useEffect(() => {
-    dispatch(wsConnect(`${ ORDERS_URL }`));
+    dispatch(wsConnect(`${ ORDERS_URL }?token=${ localStorage.getItem('accessToken') }`));
 
     return () => {
       dispatch(wsDisconnect());

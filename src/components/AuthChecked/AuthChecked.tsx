@@ -6,7 +6,6 @@ function AuthChecked() {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    // @ts-ignore
     dispatch(profileAuthCheckedFetch())
   }, [dispatch]);
 

@@ -1,5 +1,5 @@
 import { requestWithRefresh } from 'Utils/request';
-import { AppDispatch, AppThunk } from 'Types/Store';
+import { AppThunk } from 'Types/Store';
 import { burgerConstructorClear } from 'Services/BurgerConstructor/BurgerConstructor.actions';
 import {
   orderCheckoutFetchRequest,
@@ -7,7 +7,7 @@ import {
   orderCheckoutFetchError,
 } from './OrderCheckout.actions';
 
-export const orderCheckoutFetch: AppThunk = ingredients => (dispatch: AppDispatch) => {
+export const orderCheckoutFetch = (ingredients: Array<string>): AppThunk => dispatch => {
   dispatch(orderCheckoutFetchRequest());
 
   requestWithRefresh('orders', {

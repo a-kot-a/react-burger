@@ -47,7 +47,6 @@ export const webSocketMiddleware = (wsActions: TwsActionTypes): Middleware<{}, R
           const parsedData = JSON.parse(data);
 
           if(parsedData.message === 'Invalid or missing token') {
-            // @ts-ignore
             dispatch(profileGetFetch());
           } else {
             dispatch(onMessage(parsedData));

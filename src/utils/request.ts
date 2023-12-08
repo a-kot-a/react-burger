@@ -1,8 +1,8 @@
 export const BASE_URL = 'https://norma.nomoreparties.space/api/';
 export const ORDERS_ALL_URL = 'wss://norma.nomoreparties.space/orders/all';
-export const ORDERS_URL = `wss://norma.nomoreparties.space/orders?token=${ localStorage.getItem('accessToken') }`;
+export const ORDERS_URL = `wss://norma.nomoreparties.space/orders`;
 
-const checkResponse = (res: Response) => {
+const checkResponse = (res: Response): Promise<any> => {
   if (res.ok) {
     return res.json();
   }
@@ -10,7 +10,7 @@ const checkResponse = (res: Response) => {
   return res.json().then(err => Promise.reject(err.message));
 }
 
-const checkSuccess = (res: { success: boolean }) => {
+const checkSuccess = (res: Promise<any> & { success: boolean }) => {
   if (res && res.success) {
     return res;
   }

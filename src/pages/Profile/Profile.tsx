@@ -8,7 +8,6 @@ function Profile() {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    // @ts-ignore
     dispatch(logoutFetch());
   }
 

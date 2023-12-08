@@ -37,7 +37,10 @@ function BurgerConstructor() {
       return null;
     }
 
-    // @ts-ignore
+    if(!bun) {
+      return null;
+    }
+
     dispatch(orderCheckoutFetch([...ingredients.map(i => i._id), bun._id, bun._id]));
 
     openModal();
