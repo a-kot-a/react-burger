@@ -1,12 +1,12 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from 'Services/store';
 import { profileAuthCheckedFetch } from 'Services/Profile/Profile.fetch';
 
 function AuthChecked() {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(profileAuthCheckedFetch() as any)
+    dispatch(profileAuthCheckedFetch())
   }, [dispatch]);
 
   return null;

@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'Services/store';
 import { Navigate, Link } from 'react-router-dom';
 import { forgotPasswordFetch } from 'Services/ForgotPassword/ForgotPassword.fetch';
 import ForgotPasswordStyles from './ForgotPassword.module.css';
@@ -6,7 +6,7 @@ import { EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-comp
 import { useForm } from 'Hooks/useForm';
 
 function ForgotPassword() {
-  const { request, success, error } = useSelector((state: any) => state.forgotPassword).toJS();
+  const { request, success, error } = useSelector(state => state.forgotPassword);
   const dispatch = useDispatch();
   const { values, handleChange } = useForm({
     email: '',
@@ -15,7 +15,7 @@ function ForgotPassword() {
   const handleForgotPassword = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    dispatch(forgotPasswordFetch(values) as any);
+    dispatch(forgotPasswordFetch(values));
   }
 
   if (success) {

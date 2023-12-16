@@ -1,19 +1,19 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'Services/store';
 import { profileSetFetch } from 'Services/Profile/Profile.fetch';
 import ProfileFormStyles from './ProfileForm.module.css';
 import { Input, EmailInput, PasswordInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useForm } from 'Hooks/useForm';
 
 function ProfileForm() {
-  const { request, user, error } = useSelector((state: any) => state.profile).toJS();
+  const { request, user, error } = useSelector((state) => state.profile);
   const dispatch = useDispatch();
   const inputNameRef = React.useRef<HTMLInputElement>(null);
 
   const { values, handleChange, setValues } = useForm({
-    email: user.email,
+    email: user?.email,
     password: '',
-    name: user.name,
+    name: user?.name,
   });
 
   const [nameDisabled, setNameDisabled] = React.useState(true);
@@ -53,11 +53,11 @@ function ProfileForm() {
   const handleSave = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    dispatch(profileSetFetch(values) as any);
+    dispatch(profileSetFetch(values));
   }
 
   return (
-    <form className={ ProfileFormStyles.form } onSubmit={ handleSave }>
+    <form className={ `${ ProfileFormStyles.form } mt-30` } onSubmit={ handleSave }>
       <Input
         name={'name'}
         value={values.name}

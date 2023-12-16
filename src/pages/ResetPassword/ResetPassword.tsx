@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'Services/store';
 import { Navigate, Link } from 'react-router-dom';
 import { resetPasswordFetch } from 'Services/ResetPassword/ResetPassword.fetch';
 import ResetPasswordStyles from './ResetPassword.module.css';
@@ -6,7 +6,7 @@ import { PasswordInput, Input, Button } from '@ya.praktikum/react-developer-burg
 import { useForm } from 'Hooks/useForm';
 
 function ResetPassword() {
-  const { request, success, error } = useSelector((state: any) => state.resetPassword).toJS();
+  const { request, success, error } = useSelector((state) => state.resetPassword);
   const dispatch = useDispatch();
   const { values, handleChange } = useForm({
     password: '',
@@ -16,7 +16,7 @@ function ResetPassword() {
   const handleResetPasswordFetch = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    dispatch(resetPasswordFetch(values) as any);
+    dispatch(resetPasswordFetch(values));
   }
 
   if (success) {

@@ -1,10 +1,10 @@
-import { useSelector } from 'react-redux';
+import { useSelector } from 'Services/store';
 import { Navigate, useLocation } from 'react-router-dom';
 import { Dna } from 'react-loader-spinner';
 import ProtectedRouteStyles from './ProtectedRoute.module.css';
 
 function Protected({ onlyUnAuth = false, component }: { onlyUnAuth?: boolean, component: JSX.Element, }) {
-  const { isAuthChecked, user } = useSelector((state: any) => state.profile).toJS();
+  const { isAuthChecked, user } = useSelector(state => state.profile);
   const location = useLocation();
 
   if(!isAuthChecked) {

@@ -1,9 +1,113 @@
+.loader
+{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, calc(-50% + 44px));
+}
+
 .feed
 {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.body
+{
   display: flex;
+
+  gap: calc(var(--offset-base-size) * 15);
+  align-items: flex-start;
+}
+
+.list
+{
+  display: flex;
+  overflow-y: auto;
   flex-direction: column;
 
-  padding: 80px 0 0;
+  box-sizing: border-box;
+  width: 600px;
+  height: calc(100vh - 212px);
+  padding-right: calc(var(--offset-base-size) * 2);
 
-  align-items: center;
+  gap: calc(var(--offset-base-size) * 4);
+}
+
+.list::-webkit-scrollbar
+{
+  width: 8px;
+
+  border-radius: 0;
+}
+
+.list::-webkit-scrollbar-track
+{
+  border-radius: 0;
+  background: #2f2f37;
+}
+
+.list::-webkit-scrollbar-thumb
+{
+  border-radius: 0;
+  background: #8585ad;
+}
+
+.item
+{
+  text-decoration: none;
+}
+
+.content
+{
+  width: 580px;
+}
+
+.status
+{
+  display: flex;
+
+  gap: calc(var(--offset-base-size) * 9);
+}
+
+.statusColumn
+{
+  width: 50%;
+}
+
+.statusList
+{
+  display: flex;
+
+  flex-wrap: wrap;
+  gap: calc(var(--offset-base-size) * 6);
+}
+
+.statusText
+{
+  color: #f2f2f3;
+}
+
+.statusText:not(:first-child)
+{
+  margin-top: calc(var(--offset-base-size) * 2);
+}
+
+.statusColumn_mod_ready .statusText
+{
+  color: var(--colors-interface-success);
+}
+
+.feedTotalTitle,
+.feedTodayTitle
+{
+  color: #f2f2f3;
+}
+
+.feedTotalCount,
+.feedTodayCount
+{
+  color: #f2f2f3;
+  text-shadow: 0 4px 32px rgba(51, 51, 255, .50), 0 0 8px rgba(51, 51, 255, .25), 0 0 16px rgba(51, 51, 255, .25);
 }

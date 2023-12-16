@@ -1,4 +1,45 @@
+.loader
+{
+  margin: auto;
+}
+
 .orders
 {
   /*  */
+}
+
+.list
+{
+  display: flex;
+  overflow-y: auto;
+  flex-direction: column;
+
+  height: calc(100vh - 168px);
+  padding-right: calc(var(--offset-base-size) * 2);
+
+  gap: calc(var(--offset-base-size) * 4);
+}
+
+.list::-webkit-scrollbar
+{
+  width: 8px;
+
+  border-radius: 0;
+}
+
+.list::-webkit-scrollbar-track
+{
+  border-radius: 0;
+  background: #2f2f37;
+}
+
+.list::-webkit-scrollbar-thumb
+{
+  border-radius: 0;
+  background: #8585ad;
+}
+
+.item
+{
+  text-decoration: none;
 }

@@ -1,9 +1,10 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from 'Services/store';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import AppHeader from 'Components/AppHeader/AppHeader';
 import AuthChecked from 'Components/AuthChecked/AuthChecked';
 import IngredientDetails from 'Components/IngredientDetails/IngredientDetails';
+import OrderDetails from 'Components/OrderDetails/OrderDetails';
 import Modal from 'Components/Modal/Modal';
 import { OnlyUnAuth, OnlyAuth } from 'Components/ProtectedRoute/ProtectedRoute';
 import Home from 'Pages/Home/Home';
@@ -24,7 +25,7 @@ function App() {
   const navigate = useNavigate();
   const state = location.state;
 
-  React.useEffect(() => dispatch(ingredientsFetch() as any), [dispatch]);
+  React.useEffect(() => dispatch(ingredientsFetch()), [dispatch]);
 
   const modalClose = () => navigate(-1);
 
@@ -41,9 +42,11 @@ function App() {
           <Route index element={ <ProfileForm /> }/>
           <Route path="orders" element={ <Orders /> }/>
         </Route>
-        <Route path="/" element={ <Home /> }/>
+        <Route path="/profile/orders/:id" element={ <OnlyAuth component={ <OrderDetails /> } /> }/>
         <Route path="/feed" element={ <Feed /> }/>
+        <Route path="/feed/:id" element={ <OrderDetails /> }/>
         <Route path="/ingredients/:id" element={ <IngredientDetails topic={'Детали ингредиента'} /> }/>
+        <Route path="/" element={ <Home /> }/>
         <Route path="*" element={<Error />} />
       </Routes>
 
@@ -53,7 +56,17 @@ function App() {
             <Modal topic={'Детали ингредиента'} close={ modalClose }>
               <IngredientDetails />
             </Modal>
-           } />
+          } />
+          <Route path="/feed/:id" element={
+            <Modal close={ modalClose }>
+              <OrderDetails isModal={ true } />
+            </Modal>
+          } />
+          <Route path="/profile/orders/:id" element={
+            <Modal close={ modalClose }>
+              <OrderDetails isModal={ true } />
+            </Modal>
+          } />
         </Routes>
       )}
     </>
