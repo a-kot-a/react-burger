@@ -18,7 +18,7 @@ export type TProfileState = {
   isAuthChecked: boolean;
 };
 
-const initialState: TProfileState = {
+export const initialState: TProfileState = {
   user: null,
   request: false,
   error: null,

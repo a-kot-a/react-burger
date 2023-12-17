@@ -111,6 +111,7 @@ function BurgerIngredients() {
                   .filter(j => j.type === i.type)
                   .map(ingredient => (
                     <Link
+                      data-cy="ingredient"
                       key={ ingredient._id }
                       to={ `/ingredients/${ingredient._id}` }
                       state={{ backgroundLocation: location }}

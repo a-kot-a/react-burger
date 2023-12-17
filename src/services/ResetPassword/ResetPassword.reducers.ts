@@ -13,7 +13,7 @@ export type TResetPasswordState = {
   error: null | string;
 };
 
-const initialState: TResetPasswordState = {
+export const initialState: TResetPasswordState = {
   request: false,
   success: false,
   error: null,

@@ -12,6 +12,7 @@
     "@types/node": "^16.18.46",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
+    "@types/uuid": "^9.0.7",
     "@ya.praktikum/react-developer-burger-ui-components": "^1.14.0",
     "react": "^18.2.0",
     "react-dnd": "^16.0.1",
@@ -32,6 +33,7 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
+    "test:cy": "cypress open",
     "eject": "craco eject"
   },
   "eslintConfig": {
@@ -54,6 +56,6 @@
   },
   "devDependencies": {
     "@craco/craco": "^7.1.0",
-    "@types/uuid": "^9.0.7"
+    "cypress": "^13.6.1"
   }
 }

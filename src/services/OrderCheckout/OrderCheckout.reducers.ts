@@ -14,7 +14,7 @@ export type TOrderCheckoutState = {
   error: null | string;
 };
 
-const initialState: TOrderCheckoutState = {
+export const initialState: TOrderCheckoutState = {
   name: null,
   number: null,
   request: false,
