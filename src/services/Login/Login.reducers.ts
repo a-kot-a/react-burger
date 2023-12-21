@@ -11,7 +11,7 @@ export type TLoginState = {
   error: null | string;
 };
 
-const initialState: TLoginState = {
+export const initialState: TLoginState = {
   request: false,
   error: null,
 };

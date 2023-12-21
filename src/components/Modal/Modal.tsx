@@ -35,7 +35,7 @@ function Modal({
     (
       <>
         <ModalOverlay close={ close } />
-        <section className={ `${ ModalStyles.modal } pt-10 pr-10 pb-15 pl-10` }>
+        <section data-cy="modal" className={ `${ ModalStyles.modal } pt-10 pr-10 pb-15 pl-10` }>
           <div className={ `${ ModalStyles.head } pt-3 pb-3` }>
             {
               topic &&
@@ -43,7 +43,7 @@ function Modal({
                   { topic }
                 </h2>
             }
-            <button className={ ModalStyles.close } onClick={ close }>
+            <button data-cy="modal-close" className={ ModalStyles.close } onClick={ close }>
               <CloseIcon type="primary" />
             </button>
           </div>

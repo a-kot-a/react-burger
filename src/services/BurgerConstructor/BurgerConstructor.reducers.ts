@@ -17,7 +17,7 @@ export type TBurgerConstructorState = {
   ingredients: ReadonlyArray<IIngredient>;
 };
 
-const initialState: TBurgerConstructorState = {
+export const initialState: TBurgerConstructorState = {
   bun: null,
   ingredients: [],
 };
@@ -58,8 +58,8 @@ const handledBurgerConstructorClear = (): TBurgerConstructorState => initialStat
 const burgerConstructorReducer = (state: TBurgerConstructorState = initialState, action: TBurgerConstructorActions): TBurgerConstructorState => {
   const handlers: { [key: string]: Function } = {
     [BURGER_CONSTRUCTOR_ADD]: handleBurgerConstructorAdd,
-    [BURGER_CONSTRUCTOR_DELETE]: handledBurgerConstructorDelete,
     [BURGER_CONSTRUCTOR_ADD_BUN]: handleBurgerConstructorAddBun,
+    [BURGER_CONSTRUCTOR_DELETE]: handledBurgerConstructorDelete,
     [BURGER_CONSTRUCTOR_SORT]: handledBurgerConstructorSort,
     [BURGER_CONSTRUCTOR_CLEAR]: handledBurgerConstructorClear,
   };

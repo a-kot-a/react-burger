@@ -11,7 +11,7 @@ export type TRegistrationState = {
   error: null | string;
 };
 
-const initialState: TRegistrationState = {
+export const initialState: TRegistrationState = {
   request: false,
   error: null,
 };

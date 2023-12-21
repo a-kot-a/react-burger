@@ -1,4 +1,4 @@
-import { WebSocketStatus } from 'Types/Ws'
+import { WebSocketStatus } from '../../types/Ws';
 import { IOrder } from 'Types/Order'
 import { createReducer } from '@reduxjs/toolkit'
 import { wsOpen, wsClose, wsMessage, wsError, wsConnecting } from './Feed.actions';
@@ -11,7 +11,7 @@ export type TFeedState = {
   totalToday: null | number,
 }
 
-const initialState: TFeedState = {
+export const initialState: TFeedState = {
   status: WebSocketStatus.OFFLINE,
   connectionError: '',
   orders: [],

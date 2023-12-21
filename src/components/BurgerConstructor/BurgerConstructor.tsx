@@ -104,7 +104,7 @@ function BurgerConstructor() {
   }, [dispatch])
 
   return (
-    <section ref={ dropRef } className={ `${ BurgerConstructorStyles.burgerConstructor } mt-25` }>
+    <section data-cy="constructor" ref={ dropRef } className={ `${ BurgerConstructorStyles.burgerConstructor } mt-25` }>
       <div className={ BurgerConstructorStyles.body }>
         <div className="mb-4 ml-8 pl-4">
           { renderBun('top') }
@@ -151,6 +151,7 @@ function BurgerConstructor() {
           </div>
         </div>
         <Button
+          data-cy="constructor-submit"
           htmlType="button"
           type="primary"
           size="large"
